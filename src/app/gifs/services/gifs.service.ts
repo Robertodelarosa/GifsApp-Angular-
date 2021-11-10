@@ -12,7 +12,10 @@ export class GifsService {
   }
 
   buscarGifs(query: string) {
+    query = query.trim().toLocaleLowerCase();
+    if (this._historial.includes(query)) return;
     this._historial.unshift(query);
+    this._historial = this._historial.splice(0, 10);
     console.log(this._historial);
   }
 }
